@@ -19,25 +19,25 @@ struct my_node {
 
 static LIST_HEAD(my_list);
 
-static uint counter_param = 1;
-module_param(counter_param, uint, 0444);
-MODULE_PARM_DESC(counter_param, "Counter (p)");
+static uint myCounter = 1;
+module_param(myCounter, uint, 0444);
+MODULE_PARM_DESC(myCounter, "Counter (p)");
 
 static int __init my_module_init(void) {
     uint i = 0;
     struct my_node *new_node;
 
-    pr_info("Counter: %d\n", counter_param);
+    pr_info("Counter: %d\n", myCounter);
 
-    if (!counter_param)
-        pr_warn("The parameter is 0\n");
+    if (!myCounter)
+        pr_warn("Parameter is 0\n");
 
-    if (counter_param >= 5 && counter_param <= 10)
-        pr_warn("The parameter is %d, between 5 and 10. Enter a number less than 5\n", counter_param);
+    if (myCounter > 7)
+        pr_warn("Parameter is %d, greater than 7. Enter a number less than or equal to 7\n", myCounter);
 
-    BUG_ON(counter_param > 10);
+    BUG_ON(myCounter > 10);
 
-    for (i = 0; i < counter_param; i++) {
+    for (i = 0; i < myCounter; i++) {
         new_node = kmalloc(sizeof(struct my_node), GFP_KERNEL);
 
         if (i == 5)
