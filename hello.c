@@ -40,7 +40,7 @@ static int __init my_module_init(void) {
     for (i = 0; i < myCounter; i++) {
         new_node = kmalloc(sizeof(struct my_node), GFP_KERNEL);
 
-        if (i == 5)
+        if (i == 7)
             new_node = NULL;
 
         if (ZERO_OR_NULL_PTR(new_node))
